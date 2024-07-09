@@ -41,6 +41,12 @@ const SubmitCar = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const handlePhoneChange = (e) => {
+    const { value } = e.target;
+    if (value.length <= 11 && /^\d*$/.test(value)) {
+      setPhone(value);
+    }
+  };
   const handleFileChange = ({ fileList }) => {
     if (fileList.length > maxPictures) {
       setError(
@@ -139,7 +145,7 @@ const SubmitCar = () => {
                       message: "Please enter the phone number",
                     },
                   ]}>
-                  <Input type="number" maxLength={11} />
+                  <Input type="number" onChange={handlePhoneChange}  maxLength={11} />
                 </Form.Item>
                 <Form.Item
                   label="City"
